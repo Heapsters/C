@@ -8,41 +8,52 @@
 
 #include <stdio.h>
 
-void reverse(char input[]);
-int size(char input[]);
+#define EOL     '%'
+#define MAXLINE 1000
 
-int main(int argc, const char * argv[]) {
-    int earlierStuff[10];
-    int stuff[10];
+int getLine(char line[], int maxline);
+void reverse(char input[], int size);
+
+/* reverses input character strings using the fuction reverse one line at a time */
+int main(int argc, const char * argv[])
+{
+    char line[MAXLINE];
+    int len;
     
-    for (int i = 0; i > -10; --i)
-    {
-        earlierStuff[i] = i;
-        stuff[i] = i;
+    while ((len = getLine(line, MAXLINE)) > 0) {
+        reverse(line, len);
+        printf("%s", line);
     }
-    
-    for (int i = 10; i < 10; ++i)
-        printf("%d\n", stuff[i]);
-    
+           
     return 0;
 }
 
-//int size(char string[])
-//{
-//    int index;
-//    
-//    
-//    
-//    return index;
-//}
-//
-//void reverse(char input[])
-//{
-//    int i, v;
-//    char b;
-//    
-//    while (i <) {
-//
-//    }
-//}
-//
+int getLine(char s[], int lim)
+{
+    int c = 0, i;
+    
+    for (i=0; i<lim-1 && (c=getchar())!=EOL && c!='\n'; ++i) {
+        s[i] = c;
+    }
+    if (c == '\n') {
+        s[i] = c;
+        ++i;
+    }
+    s[i] = '\0';
+    return i;
+}
+
+void reverse(char line[], int size)
+{
+    char temp;
+    int f, l;
+    
+    f = -1;
+    l = size-1;
+    while (++f < --l) {
+        temp = line[f];
+        line[f] = line[l];
+        line[l] = temp;
+    }
+}
+
