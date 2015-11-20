@@ -32,15 +32,15 @@ int main()
 void itoa(int n, char s[], int min)
 {
     int i;
-    _Bool sign = (n < 0);
+    _Bool neg = (n < 0);
     
     i = 0;
     
     do {
-        s[i++] = '0' + (n % 10) * (sign ? -1 : 1);
+        s[i++] = '0' + (n % 10) * (neg ? -1 : 1);
     } while (n /= 10);
     
-    if (sign) {
+    if (neg) {
         s[i++] = '-';
     }
     
