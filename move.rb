@@ -1,5 +1,4 @@
 require "humanize"
-require 'fileutils'
 
 source = ARGV[0]
 
