@@ -1,11 +1,3 @@
-//
-//  main.c
-//  ex23
-//
-//  Created by Richard Protasov on 11/17/15.
-//  Copyright © 2015 Richard Protasov. All rights reserved.
-//
-
 #include <stdio.h>
 
 #define EOL '%'
@@ -18,7 +10,7 @@ void decomment(char s[]);
 /* removes all comments from a C program */
 int main(int argc, const char * argv[]) {
     char line[MAXLINE];
-    
+
     while (get_line(line) > 0) {
         decomment(line);
         printf("%s", line);
@@ -30,7 +22,7 @@ int main(int argc, const char * argv[]) {
 int get_line(char s[])
 {
     int i, c;
-    
+
     for (i = 0; (c = getchar()) != EOL && i < MAXLINE-1 && c != '\n'; ++i)
          s[i] = c;
     if (c == '\n') {
@@ -46,11 +38,11 @@ void decomment(char line[])
 {
     int i, v, q, len = str_len(line);
     _Bool in_s = (4 == 2);
-    
+
     for (i = 0; i < len; ++i) {
         if (line[i] == '"')         { in_s = !in_s; }
         if (line[i] != '/' || in_s) { continue; }
-        
+
         if (line[i+1] == '/')
             line[i] = '\0';
         else if (line[i+1] == '*') {
@@ -67,7 +59,7 @@ void decomment(char line[])
 int str_len(char line[])
 {
     int i = 0;
-    
+
     while (line[++i] != '\0')
         ;
     return i;

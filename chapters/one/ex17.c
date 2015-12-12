@@ -1,11 +1,3 @@
-//
-//  main.c
-//  ex17
-//
-//  Created by Richard Protasov on 11/12/15.
-//  Copyright © 2015 Richard Protasov. All rights reserved.
-//
-
 #include <stdio.h>
 
 #define MAXLINE 1000
@@ -19,7 +11,7 @@ void copy(char to[], char from[]);
 int main(int argc, const char * argv[]) {
     char line[MAXLINE];
     int len;
-    
+
     while ((len = getLine(line, MAXLINE)) > 0)
         if (len > MINSIZE)
             printf("%s", line);
@@ -30,9 +22,9 @@ int main(int argc, const char * argv[]) {
 int getLine(char s[], int lim)
 {
     int c, i;
-    
+
     c = 0;
-    
+
     for (i=0; i<lim-1 && (c=getchar())!=EOL && c!='\n'; ++i)
         s[i] = c;
     if (c == '\n') {
@@ -47,7 +39,7 @@ int getLine(char s[], int lim)
 void copy(char to[], char from[])
 {
     int i;
-    
+
     i = 0;
     while ((to[i] = from[i]) != '\0')
         ++i;

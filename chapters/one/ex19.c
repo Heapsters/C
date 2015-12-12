@@ -1,11 +1,3 @@
-//
-//  main.c
-//  ex19
-//
-//  Created by Richard Protasov on 11/12/15.
-//  Copyright © 2015 Richard Protasov. All rights reserved.
-//
-
 #include <stdio.h>
 
 #define EOL     '%'
@@ -19,19 +11,19 @@ int main(int argc, const char * argv[])
 {
     char line[MAXLINE];
     int len;
-    
+
     while ((len = getLine(line, MAXLINE)) > 0) {
         reverse(line, len);
         printf("%s", line);
     }
-           
+
     return 0;
 }
 
 int getLine(char s[], int lim)
 {
     int c = 0, i;
-    
+
     for (i=0; i<lim-1 && (c=getchar())!=EOL && c!='\n'; ++i) {
         s[i] = c;
     }
@@ -47,7 +39,7 @@ void reverse(char line[], int size)
 {
     char temp;
     int f, l;
-    
+
     f = -1;
     l = size-1;
     while (++f < --l) {
@@ -56,4 +48,3 @@ void reverse(char line[], int size)
         line[l] = temp;
     }
 }
-

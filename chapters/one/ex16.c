@@ -1,14 +1,6 @@
-//
-//  main.c
-//  ex16
-//
-//  Created by Richard Protasov on 11/12/15.
-//  Copyright © 2015 Richard Protasov. All rights reserved.
-//
-
 #include <stdio.h>
 
-#define EOL     '%' 
+#define EOL     '%'
 #define MAXLINE 1000
 
 int getLine(char line[], int maxline);
@@ -19,7 +11,7 @@ int main(int argc, const char * argv[]) {
     int max;
     char line[MAXLINE];
     char longest[MAXLINE];
-    
+
     max = 0;
     while ((len = getLine(line, MAXLINE)) > 0)
         if (len > max) {
@@ -35,7 +27,7 @@ int main(int argc, const char * argv[]) {
 int getLine(char s[], int lim)
 {
     int c = 0, i;
-    
+
     for (i=0; i<lim-1 && (c=getchar())!=EOL && c!='\n'; ++i)
         s[i] = c;
     if (c == '\n') {
@@ -50,7 +42,7 @@ int getLine(char s[], int lim)
 void copy(char to[], char from[])
 {
     int i;
-    
+
     i = 0;
     while ((to[i] = from[i]) != '\0')
         ++i;
