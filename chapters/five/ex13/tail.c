@@ -41,7 +41,7 @@ int main(int argc, char *argv[])
                 default:
                     printf("tail: illegal option %c\n", c);
                     argc = 0;
-                    tailed = -1;
+                    tailed = 1;
                     break;
             }
     }
@@ -52,13 +52,15 @@ int main(int argc, char *argv[])
         else {
             printf("tail: only integer values\n");
             argc = 0;
-            tailed = -1;
+            tailed = 1;
             ok = 0;
         }
     }
 
-    if (argc != 1 || ok == 0)
-        printf("usage: tail -n\n");
+    if (argc != 1 || ok == 0) {
+        printf("usage: tail -n lines\n");
+        tailed = 1;
+    }
     else {
         nlines = _readlines(lineptr, MAXLINES);
         if (nlines >= 0)
