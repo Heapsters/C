@@ -27,23 +27,14 @@
 int main(int argc, char *argv[])
 {
     char *lineptr[MAXLINES];
-    int nlines, print, p, c, tail = 0, tailed = 0, ok = 0;
+    int nlines, print, p, tail = 0, tailed = 0;
 
     print = DEFAULT_TAIL;
 
-    while (--argc > 0 && **(++argv) == '-') {
-        while ((c = *++argv[0]))
-            switch (c) {
-                case 'n':
-                    tail = 1;
-                    ok = 1;
-                    break;
-                default:
-                    printf("tail: illegal option %c\n", c);
-                    argc = 0;
-                    tailed = 1;
-                    break;
-            }
+    if (argc > 1 && **(++argv) == '-' && *++argv[0] == 'n') {
+        tail = 1;
+        argc = 1;
+        ++argv;
     }
 
     if (tail) {
@@ -52,20 +43,17 @@ int main(int argc, char *argv[])
         else {
             printf("tail: only integer values\n");
             argc = 0;
-            tailed = 1;
-            ok = 0;
         }
     }
 
-    if (argc != 1 || ok == 0) {
+    if (argc != 1) {
         printf("usage: tail -n lines\n");
         tailed = 1;
     }
     else {
-        nlines = _readlines(lineptr, MAXLINES);
-        if (nlines >= 0)
-            print = min(print, nlines);
-            _writelines(lineptr + nlines - print, print);
+        nlines = ROPreadlines(lineptr, MAXLINES);
+        print = min(print, nlines);
+        ROPwritelines(lineptr + nlines - print, print);
     }
 
     return tailed;

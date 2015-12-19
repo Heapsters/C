@@ -3,13 +3,13 @@
 #include "alloc.h"
 #include "lines.h"
 
-int _readlines(char *s[], int maxlines)
+int ROPreadlines(char *s[], int maxlines)
 {
     int len, nlines;
     char *p, line[MAXLEN];
 
     nlines = 0;
-    while ((len = _getline(line, MAXLEN)) > 1)
+    while ((len = ROPgetline(line, MAXLEN)) > 1)
         if (nlines >= maxlines || (p = alloc(len)) == NULL)
             return 0;
         else {
@@ -22,7 +22,7 @@ int _readlines(char *s[], int maxlines)
     return nlines;
 }
 
-void _writelines(char *lineptr[], int nlines)
+void ROPwritelines(char *lineptr[], int nlines)
 {
     int i;
 
@@ -31,7 +31,7 @@ void _writelines(char *lineptr[], int nlines)
         printf("%s\n", *lineptr++);
 }
 
-int _getline(char *s, int lim)
+int ROPgetline(char *s, int lim)
 {
     int c, i;
 
