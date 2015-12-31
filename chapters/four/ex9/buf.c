@@ -1,7 +1,7 @@
 #include "buf.h"
 
 static char buf[BUFSIZE]; // buffer for unget_ch
-int bufp = 0;             // next free position in buf
+static int bufp = 0;             // next free position in buf
 
 int getch(void)
 {
